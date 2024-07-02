@@ -1,0 +1,150 @@
+<section class="bg-color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ds-flex">
+                    <h4 class="title"><img class="logo-img" src="../../assets/img/cell-division.png" alt=""> Split Money
+                    </h4>
+                    <h4 class="total-amount" *ngIf="totalAmount"> <img src="../../assets/img/get-money.png" alt="">
+                        {{totalAmount}} </h4>
+                </div>
+                <form [formGroup]="userName" (ngSubmit)="onSaveName()" class="mb-3" *ngIf="!name">
+                    <p><small class="text-danger text-center"><strong>First Enter your name </strong></small></p>
+                    <div class="row">
+                        <div class="col-md-2"> <label for="" class="form-label">Your Name </label></div>
+                        <div class="col-md-8"><input type="text" formControlName="name" class="form-control"
+                                placeholder="Enter your name"></div>
+                        <div class="col-md-2"> <button type="submit" class="btn btn-info form-control"> Save</button>
+                        </div>
+                    </div>
+
+
+
+                </form>
+                <form [formGroup]="userForm" (ngSubmit)="onSave()">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label class="form-label">Name.</label>
+                            <input type="text" class="form-control" formControlName="name"
+                                placeholder="Enter the user name">
+                        </div>
+                        <div class="col-md-5">
+                            <label class="form-label">Amount ₹.</label>
+                            <input type="text" class="form-control" formControlName="amount"
+                                placeholder="Enter the amount ₹">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-info save-btn">Save</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="pdfContent">
+            <div class="row my-5">
+                <div class="col-md-12">
+                    <div class="ds-flex">
+                        <h4 *ngIf="name" class="mb-4">Welcome back dear, <span class="text-primary">{{name.name}}</span>
+                            <img class="user-name-pic" src="../../assets/img/man.png" alt="" srcset=""></h4>
+                            <img class="share-button" src="../../assets/img/share.png" (click)="shareData()" alt="">
+                    </div>
+                    <table class="table table-bordered border-info">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Return</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <ng-container *ngFor="let item of allUser; let i=index">
+                                <tr>
+                                    <th scope="row"> {{i+1}} </th>
+                                    <td> <img [src]='item.img' alt="user-img" class="user-img">{{item.name}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.returnAmount}}</td>
+                                    <td>
+                                        <div><img class="delete-img" src="../../assets/img/delete.png" alt=""
+                                                (click)="onRemove(item.id)"> <img class="more-details"
+                                                (click)="open(content)" (click)="onSelectUser(item)"
+                                                src="../../assets/img/more.png" alt=""> </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                        <tbody class="table-group-divider">
+                            <tr *ngIf="allUser.length === 0" class="text-center">
+                                <td colspan="5">
+                                    <p>No Data is here!</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col-md-12">
+                    <h5 class="my-3">Return Amount User's List </h5>
+                    <div class="flex" *ngFor="let item of getReturnAmountUsers()">
+                        <div class="user-pic">
+                            <img [src]="item.img" alt="">
+                        </div>
+                        <div class="mx-3">
+                            <h5 class="user-name">{{item.name}} </h5>
+                            <p><small class="text-danger"><strong>{{item.name}} is return ₹
+                                        {{item.returnAmount}}</strong> </small></p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="btn btn-danger" (click)="clearDb()"><i class="bi bi-trash"></i> All Data</button>
+            <button (click)="downloadPDF()" class="btn btn-warning"><i class="bi bi-arrow-down-circle"></i>
+                Invoice</button>
+        </div>
+    </div>
+    <app-products/>
+</section>
+
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <div class="card">
+                    <div class="profile-img">
+                        <img [src]="selectUser.img" alt="" class="picture">
+                    </div>
+                    <div>
+                        <h2 class="text-center">{{selectUser.name}}</h2>
+                        <p class="text-center">User</p>
+                    </div>
+                    <div class="amount-section mb-3">
+                        <div class="flex">
+                            <img src="../../assets/img/rupee-sign.png" alt="">
+                            <h4 class="mx-2">{{selectUser.amount}}</h4>
+                        </div>
+                        <div class="flex">
+                            <img src="../../assets/img/money.png" alt="">
+                            <h4 class="mx-2">{{selectUser.returnAmount}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>

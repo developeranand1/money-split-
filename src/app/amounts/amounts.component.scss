@@ -1,0 +1,90 @@
+.bg-color {
+    background-color: #eeeeee;
+    padding: 30px 0px;
+  }
+  
+  .ds-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 23px 0px;
+  }
+  
+  button.btn.btn-info.save-btn {
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  img.user-img {
+    border: 1px solid;
+    width: 32px;
+    border-radius: 50%;
+    margin-right: 7px;
+    padding: 1px;
+  }
+  
+  img.logo-img {
+    background: transparent;
+    width: 35px;
+  }
+  
+  img.delete-img {
+    width: 27px;
+    cursor: pointer;
+  }
+  img.more-details {
+    width: 30px;
+    margin-left: 4px;
+    cursor: pointer;
+  }
+  
+  
+  .profile-img {
+      height: 58px;
+      background-color: #FFB7D2;
+      text-align: center;
+  }
+  
+  
+  img.picture {
+      margin: -23px;
+      width: 69px;
+      border: 1px solid;
+      padding: 2px;
+      background: #fff;
+      border-radius: 50px;
+  }
+  
+  .amount-section {
+      align-items: center;
+      display: flex;
+      justify-content: space-evenly;
+  }
+  
+  .user-pic img {
+      width: 46px;
+      border-radius: 50%;
+      border: 1px solid;
+      background: #fff;
+      padding: 2px;
+      width: 60px;
+  }
+  
+  h5.user-name {
+      font-size: 20px;
+      font-weight: 700;
+  }
+  
+  .button-group{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  .user-name-pic{
+    margin-left: 7px;
+  }
+  
+  img.share-button {
+    cursor: pointer;
+  }
